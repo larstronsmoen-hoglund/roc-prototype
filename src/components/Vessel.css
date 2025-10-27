@@ -1,0 +1,48 @@
+.vessel64 {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  /* CSS variable for heading; supplied inline */
+}
+
+.vessel64 .rot {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  transform: rotate(var(--hd, 0deg));
+  transform-origin: 50% 50%;
+}
+
+.vessel64 .hull {
+  width: 64px;
+  height: 64px;
+}
+
+/* 24x24 centered badge that counter-rotates */
+.vessel64 .center-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  display: grid;
+  place-items: center;
+
+  /* Counter-rotate to keep text upright */
+  transform: rotate(calc(-1 * var(--hd, 0deg)));
+  transform-origin: 50% 50%;
+}
+
+.vessel64 .center-badge > obi-own-ship-no-command-index {
+  width: 24px;
+  height: 24px;
+}
+
+/* Optional theme bridge for OpenBridge tokens */
+.vessel64 [useCssColor],
+.vessel64 [use-css-color] {
+  color: var(--ob-ink, currentColor);
+}

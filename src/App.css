@@ -1,0 +1,29 @@
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+main {
+  position: absolute;
+  top: var(--app-components-topbar-touch-target-size);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 16px;
+}
+
+.topbar::part(dimming-button) {
+  anchor-name: --dimming-menu-button;
+}
+
+.brilliance {
+  position: fixed;
+  position-anchor: --dimming-menu-button;
+  top: calc(anchor(bottom) + 4px);
+  right: calc(anchor(right) + 8px);
+  z-index: 1000;
+}
