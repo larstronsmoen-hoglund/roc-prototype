@@ -8,7 +8,7 @@ import "./App.css";
 import { NavigationMenu } from "./components/NavigationMenu";
 import { ContextMenu } from "./components/ContextMenu";
 // import LeafletMap from "./components/LeafletMap";
-import MapLibreMap from "./components/MapLibre";
+import MapLibreMap from "./components/MapLibre-local"; // Using local version with local styles
 import useMinuteUpdate from "./hooks/useMinuteUpdate";
 type Palette = ObcPalette;
 

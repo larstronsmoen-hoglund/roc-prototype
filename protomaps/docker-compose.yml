@@ -1,0 +1,17 @@
+
+services:
+  pmtiles:
+    image: protomaps/go-pmtiles:v1.22.1
+    container_name: pmtiles
+    command:
+      - serve
+      - .                         # serve archives in working dir
+      - --public-url=https://localhost:8080
+      - --cors=*
+      # - --cache-size=256        # optional: add a small cache
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+    working_dir: /data
+    restart: unless-stopped
