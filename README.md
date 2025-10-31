@@ -4,15 +4,17 @@ Tested in Visual Studio Code.
 Needs node.js (npm).
 Node.js prebuilt installer from: https://nodejs.org/en/download
 
-# Modules/dependencies
-These are ignored by git. Can be reinstalled with npm install. OpenBridge requires GitHub personal token to access (input as password when running npm login --registry https://npm.pkg.github.com/ --scope=ocean-industries-concept-lab)
+## Dependencies (node_modules)
+These are ignored by git. Can be reinstalled with npm install.  
+OpenBridge requires GitHub personal token to access (input as password when running npm login --registry https://npm.pkg.github.com/ --scope=ocean-industries-concept-lab)  
 For more info: https://github.com/Ocean-Industries-Concept-Lab/openbridge-webcomponents-jip/blob/main/docs/getting-started-react.md
 
 
-# Run:
-cd prototype
-npm install to verify (once)
-npm run dev
+## Run:
+cd prototype  
+npm install (once to verify)  
+npm run dev  
+
 
 
 
