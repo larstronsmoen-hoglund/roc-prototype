@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ObcTopBar } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/top-bar/top-bar";
 import { ObcBrillianceMenu } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu";
 import { ObcPalette } from "@ocean-industries-concept-lab/openbridge-webcomponents/dist/components/brilliance-menu/brilliance-menu";
@@ -7,7 +7,8 @@ import { ObcClock } from "@ocean-industries-concept-lab/openbridge-webcomponents
 import "./App.css";
 import { NavigationMenu } from "./components/NavigationMenu";
 import { ContextMenu } from "./components/ContextMenu";
-import LeafletMap from "./components/LeafletMap";
+// import LeafletMap from "./components/LeafletMap";
+import MapLibreMap from "./components/MapLibre";
 import useMinuteUpdate from "./hooks/useMinuteUpdate";
 type Palette = ObcPalette;
 
@@ -60,16 +61,19 @@ export default function App() {
   /** Compute the current logo path and pass to NavigationMenu */
   const logoSrc = useMemo(() => getLogoSrc(palette), [palette]);
 
+  /* Dimming/palette button handler */
   const handleDimmingButtonClicked = () => {
     setShowBrillianceMenu(!showBrillianceMenu);
     setShowNavigationMenu(false);
   };
 
+  /** Navigation menu button handler */
   const handleNavigationButtonClicked = () => {
     setShowNavigationMenu(!showNavigationMenu);
     setShowBrillianceMenu(false);
   };
 
+  /* Build the page */
   return (
     <>
       <header>
@@ -94,8 +98,8 @@ export default function App() {
           <ContextMenu className="context-menu" />
 
         {/* The map fills the content area */}
-          <LeafletMap/>
-
+           {/*<LeafletMap/> */}
+          <MapLibreMap palette={palette} />
         {/* Overlays */}
         {showNavigationMenu && (
           <NavigationMenu className="navigation-menu" logoSrc={logoSrc} />

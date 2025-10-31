@@ -12,8 +12,8 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: auto;
-  padding: 16px;
+  overflow: clip; /* prevent scrollbars from appearing */
+  padding: 0px;
 }
 
 .topbar::part(dimming-button) {

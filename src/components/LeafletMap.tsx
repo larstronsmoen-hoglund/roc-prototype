@@ -57,7 +57,7 @@ function makeVesselIcon(label: string, headingDeg: number) {
   return L.divIcon({
     className: "obi-vessel-divicon",
     html,
-    iconSize: [28, 28],
+    iconSize: [24, 24],
     iconAnchor: [14, 14],
     popupAnchor: [0, -16],
   });

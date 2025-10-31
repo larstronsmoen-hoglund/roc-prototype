@@ -6,3 +6,47 @@
   bottom: 0;
   z-index: 1000;
 }
+
+
+/* Container that is slotted as the icon for the nav item */
+.icon-stack {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Size your icon wrapper; tune to your menu density */
+  width: 24px;
+  height: 24px;
+
+  /* If OpenBridge exposes an icon size variable, you can also try:
+     width: var(--obc-icon-size, 24px);
+     height: var(--obc-icon-size, 24px);
+
+  /* Avoid intercepting pointer events if you want the nav item to handle them */
+  pointer-events: none;
+}
+
+/* The base OBI icon */
+.icon-base {
+  width: 100%;
+  height: 100%;
+  color: var(--obc-color-surface-primary); /* or any suitable token */
+}
+
+/* The overlay text centered over the icon */
+.icon-text {
+  position: absolute;
+  inset: 0; /* fills the wrapper */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 670;
+  color: var(--container-backdrop-color);
+  font-family: var(--obc-font-family-body);
+
+  z-index: 1;
+  pointer-events: none; /* text shouldn't block clicks */
+}

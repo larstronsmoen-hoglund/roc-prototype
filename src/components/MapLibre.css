@@ -1,0 +1,93 @@
+/* Set MapLibre map container background to fully transparent, use palette backgrounds*/
+.maplibregl-canvas {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(255,0,0,0.0);
+}
+
+
+
+.vessel-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rotating-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center; /* ensure rotation around center */
+}
+
+.static-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* optional: let clicks pass to marker container */
+}
+
+.vessel-icon {
+  color: var(--obc-color-surface-primary);
+}
+
+.vessel-icon.bottom {
+  width: 64px;
+  height: 64px;
+}
+
+.vessel-icon.top {
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+}
+
+.static-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.vessel-text {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 670;
+  color: var(--container-backdrop-color);
+  z-index: 3;
+  pointer-events: none;
+  font-family: var(--obc-font-family-body);
+}
+
+
+/* Mode icon: centered like the top icon, but nudged along Y */
+.vessel-mode-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Negative half width/height to center, then push by offset */
+  transform: translate(-50%, calc(-50% + var(--mode-offset-y, 8px)));
+  width: 16px;
+  height: 12px;
+
+}
+
+/* Ensure inline SVG fits the container exactly */
+.vessel-mode-icon svg {
+  display: block;
+  width: 16px;
+  height: 12px;
+  color: var(--element-active-color);
+}

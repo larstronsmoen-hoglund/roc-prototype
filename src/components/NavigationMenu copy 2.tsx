@@ -1,3 +1,4 @@
+
 import { useMemo } from "react";
 import { ObcNavigationMenu } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/navigation-menu/navigation-menu";
 import { ObcVendorButton } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/vendor-button/vendor-button";
@@ -7,12 +8,25 @@ import { ObiAlerts } from "@ocean-industries-concept-lab/openbridge-webcomponent
 import { ObiPaletteDimming } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/icons/icon-palette-dimming";
 import { ObiSupportGoogle } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/icons/icon-support-google";
 import { ObiSettingsIec } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/icons/icon-settings-iec";
+import { ObiAlertList } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/icons/icon-alert-list";
 import "./NavigationMenu.css";
 
 type NavigationMenuProps = {
   /** Full path to the correct logo for the current palette (e.g., /has-logo-day.svg) */
   logoSrc?: string;
 } & Record<string, unknown>; // allow spreading delegated props
+
+
+
+
+export function IconProbe() {
+  return (
+    <div style={{ padding: 16 }}>
+      
+    </div>
+  );
+}
+
 
 
 
@@ -26,25 +40,28 @@ export function NavigationMenu({ logoSrc, ...delegated }: NavigationMenuProps) {
 
   return (
     <ObcNavigationMenu {...delegated}>
-      {/*- Main */}
-      <ObcNavigationItem slot="main" hasIcon label="Apps" href="#" >
+      <ObcNavigationItem slot="main" label="Apps" href="#" >
         <ObiApplications slot="icon"></ObiApplications>
       </ObcNavigationItem>
-      <ObcNavigationItem slot="main" hasIcon label="Alerts" href="#">
+      <ObcNavigationItem slot="main" label="Alerts" href="#">
         <ObiAlerts slot="icon"></ObiAlerts>
       </ObcNavigationItem>
-      <ObcNavigationItem slot="main" hasIcon  label="Dimming" href="#">
+      <ObcNavigationItem slot="main" label="Dimming" href="#">
         <ObiPaletteDimming slot="icon"></ObiPaletteDimming>
       </ObcNavigationItem>
-
-      {/*- Footer */}
-      <ObcNavigationItem slot="footer" hasIcon  label="Help" href="#">
+      <ObcNavigationItem slot="footer" label="Help" href="#">
         <ObiSupportGoogle slot="icon"></ObiSupportGoogle>
       </ObcNavigationItem>
-      <ObcNavigationItem slot="footer" hasIcon label="Settings" href="#">
+      <ObcNavigationItem slot="footer" label="Settings" href="#">
         <ObiSettingsIec slot="icon"></ObiSettingsIec>
+      </ObcNavigationItem>
+      <ObcNavigationItem slot="footer" label="Alert" href="#">
+        <ObiAlertList slot="icon"></ObiAlertList>
       </ObcNavigationItem>
       <ObcVendorButton imageSrc={derivedLogoSrc} alt="Høglund" slot="logo" />
     </ObcNavigationMenu>
   );
 }
+
+
+
