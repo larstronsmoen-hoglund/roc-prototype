@@ -10,10 +10,10 @@
 		  }
 
     },
-    "_comment": "Use for local:protomaps/assets/sprites/v4/white",
+    "_comment": "Use for local:protomaps/assets/sprites/v4/dark",
     "_comment": "Use for local:protomaps/assets/fonts/{fontstack}/{range}.pbf",
 
-    "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/white",
+    "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/dark",
     "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
