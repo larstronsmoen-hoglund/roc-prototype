@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ObcTopBar } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/top-bar/top-bar";
-import { ObcBrillianceMenu } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu";
-import { ObcPalette } from "@ocean-industries-concept-lab/openbridge-webcomponents/dist/components/brilliance-menu/brilliance-menu";
+import {ObcBrillianceMenu, type ObcPaletteChangeEvent, type ObcBrightnessChangeEvent} from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu";
+import { ObcBrillianceInputVariant, ObcPalette } from "@ocean-industries-concept-lab/openbridge-webcomponents/dist/components/brilliance-menu/brilliance-menu";
 import { ObcClock } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/clock/clock.js";
+
+//import { ObiRadarTargetTrackedSelectedIec } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/icons/icon-radar-target-tracked-selected-iec";
 
 import "./App.css";
 import { NavigationMenu } from "./components/NavigationMenu";
@@ -10,53 +12,41 @@ import { ContextMenu } from "./components/ContextMenu";
 // import LeafletMap from "./components/LeafletMap";
 import MapLibreMap from "./components/MapLibre-local"; // Using local version with local styles
 import useMinuteUpdate from "./hooks/useMinuteUpdate";
+//import { ObcIconButton } from "@ocean-industries-concept-lab/openbridge-webcomponents/dist/components/icon-button/icon-button";
 type Palette = ObcPalette;
 
-/** Read initial palette from the DOM attribute if present, else default to 'day' */
-const getInitialPalette = (): Palette => {
-  const fromAttr = document.documentElement.getAttribute("data-obc-theme");
-  const v = (fromAttr ?? "day").toLowerCase();
-  return (["day", "dusk", "night", "bright"] as const).includes(v as Palette)
-    ? (v as Palette)
-    : ("day" as Palette);
-};
 
 const getLogoSrc = (p: Palette) => `/has-logo-${p}.svg`; // Update logoSrc with current palette
+
+
 
 export default function App() {
   const [showBrillianceMenu, setShowBrillianceMenu] = useState(false);
   const [showNavigationMenu, setShowNavigationMenu] = useState(false);
-  const [palette, setPalette] = useState<Palette>(getInitialPalette);
+  const [palette, setPalette] = useState(ObcPalette.day);
+  const [brightness, setBrightness] = useState(100);
+
+  // Push brightness changes to CSS variable --brightness for use on html(global)
+  useEffect(() => {
+    document.documentElement.style.setProperty('--brightness', `${brightness}%`);
+  }, [brightness]);
+
 
   const brillianceRef = useRef<any>(null);
+  // Minutes update for clock
   const time = useMinuteUpdate();
-
-  /** Keep OpenBridge theming attribute in sync with React state */
-  useEffect(() => {
-    document.documentElement.setAttribute("data-obc-theme", palette);
-  }, [palette]);
-
-  /** Keep the Brilliance menu selection in sync so it opens showing the current palette */
-  useEffect(() => {
-    const el = brillianceRef.current;
-    if (!el) return;
-
-    // Try both property & attribute to cover the web component API
-    // (Some WC use a property `palette`, others might use `value`.)
-    el.palette = palette;
-    el.setAttribute("palette", palette);
-    el.value = palette;
-    el.setAttribute("value", palette);
-  }, [palette, showBrillianceMenu]);
-
   /** Handler from the Brilliance menu */
-  const handleBrillianceChange = useCallback((e: CustomEvent) => {
-    const next = String(e.detail?.value || "day").toLowerCase() as Palette;
-    const normalized: Palette = (["day", "dusk", "night", "bright"] as const).includes(next)
-      ? next
-      : ("day" as Palette);
-    setPalette(normalized); // this also updates data-obc-theme via effect
-  }, []);
+  const handlePalleteChange = (e: ObcPaletteChangeEvent) => {
+    document.documentElement.setAttribute("data-obc-theme", e.detail.value);
+    setPalette(e.detail.value);
+  };
+
+/** Handler for brightness changes */
+const handleBrightnessChange = (e: ObcBrightnessChangeEvent) => {
+  const rawValue = e.detail.value;
+  const clampedValue = Math.max(rawValue, 5); // enforce minimum 5%
+  setBrightness(clampedValue);
+};
 
   /** Compute the current logo path and pass to NavigationMenu */
   const logoSrc = useMemo(() => getLogoSrc(palette), [palette]);
@@ -100,6 +90,12 @@ export default function App() {
         {/* The map fills the content area */}
            {/*<LeafletMap/> */}
           <MapLibreMap palette={palette} />
+           {/*
+          <ObcIconButton variant="normal">
+            <ObiRadarTargetTrackedSelectedIec/>
+            </ObcIconButton>
+          */}
+
         {/* Overlays */}
         {showNavigationMenu && (
           <NavigationMenu className="navigation-menu" logoSrc={logoSrc} />
@@ -110,8 +106,11 @@ export default function App() {
             ref={brillianceRef}
             className="brilliance"
             palette={palette}
-            onPaletteChanged={handleBrillianceChange}
-            hideBrightness
+            onPaletteChanged={handlePalleteChange}
+            brightnessInputVariant={ObcBrillianceInputVariant.slider}
+            brightness={brightness}
+            brightnessMax={110} // "This one goes to 11"
+            onBrightnessChanged={handleBrightnessChange}
           />
         )}
       </main>

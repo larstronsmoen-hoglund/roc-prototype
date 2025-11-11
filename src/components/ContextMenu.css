@@ -7,6 +7,13 @@
   z-index: 1000;
 }
 
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adds spacing between items */
+}
+
+
 
 /* Container that is slotted as the icon for the nav item */
 .icon-stack {

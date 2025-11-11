@@ -51,7 +51,7 @@ function renderSpeedIcon(
 }
 
 
-// New custom marker element concept
+// New custom marker element concept 64x64px
 const createVesselMarker = (name: string, heading: number, mode: string) => {
   const el = document.createElement('div');
   el.className = 'vessel-marker';
@@ -117,8 +117,10 @@ const vessels: Vessel[] = [
       style: STYLE_URLS[palette],
       center: [-28, 52],
       zoom: 4
+      
     });
-
+    // Add navigation controls (zoom buttons). TODO implement palette styling
+     map.current.addControl(new maplibregl.NavigationControl());
     // Add markers when map loads
     map.current.on('load', () => {
       // Clear existing markers

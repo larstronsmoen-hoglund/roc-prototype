@@ -1,3 +1,7 @@
+html {
+  filter: brightness(var(--brightness)); /* Applies a full brightness filter */
+}
+
 header {
   position: absolute;
   top: 0;

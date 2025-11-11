@@ -5,6 +5,14 @@
   background-color:rgba(255,0,0,0.0);
 }
 
+.maplibregl-ctrl-group {
+    background: var(--container-global-color);
+    border-top: var(--border-divider-color);
+}
+
+.maplibregl-ctrl-group button+button {
+    border-top: 1px solid var(--border-divider-color);
+}
 
 
 .vessel-wrap {
