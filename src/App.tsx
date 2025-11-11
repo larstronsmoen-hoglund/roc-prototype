@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ObcTopBar } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/top-bar/top-bar";
-import {ObcBrillianceMenu, type ObcPaletteChangeEvent, type ObcBrightnessChangeEvent} from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu";
+import { ObcBrillianceMenu, type ObcPaletteChangeEvent, type ObcBrightnessChangeEvent} from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu";
 import { ObcBrillianceInputVariant, ObcPalette } from "@ocean-industries-concept-lab/openbridge-webcomponents/dist/components/brilliance-menu/brilliance-menu";
 import { ObcClock } from "@ocean-industries-concept-lab/openbridge-webcomponents-react/components/clock/clock.js";
 
@@ -10,7 +10,7 @@ import "./App.css";
 import { NavigationMenu } from "./components/NavigationMenu";
 import { ContextMenu } from "./components/ContextMenu";
 // import LeafletMap from "./components/LeafletMap";
-import MapLibreMap from "./components/MapLibre-local"; // Using local version with local styles
+import MapLibreMap from "./components/MapLibre"; // Using local version with local styles
 import useMinuteUpdate from "./hooks/useMinuteUpdate";
 //import { ObcIconButton } from "@ocean-industries-concept-lab/openbridge-webcomponents/dist/components/icon-button/icon-button";
 type Palette = ObcPalette;

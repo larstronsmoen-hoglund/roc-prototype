@@ -1,16 +1,19 @@
 {
   "name": "maritime-app",
-  "private": true,
+  "homepage":"https://larstronsmoen-hoglund.github.io/roc-prototype/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -r https://github.com/larstronsmoen-hoglund/roc-prototype.git -b gh-pages"
   },
   "dependencies": {
     "@ocean-industries-concept-lab/openbridge-webcomponents-react": "^0.0.20251022195219",
+    "gh-pages": "^6.3.0",
     "maplibre-gl": "^5.10.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
